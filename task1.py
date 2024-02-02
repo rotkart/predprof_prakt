@@ -7,6 +7,7 @@
 
 from csv import reader, writer
 
+# Выполнение 1-й части задания
 with open('students.csv', encoding='utf-8') as data_file:
     # Открыть файл с данными как объект reader
     csv_data = reader(data_file, delimiter=',')
@@ -15,14 +16,15 @@ with open('students.csv', encoding='utf-8') as data_file:
         if "Хадаров Владимир" in row[1]:
             print(f'Ты получил: {row[4]}, за проект - {row[2]}')
 
+# Вторая часть задания
 with open('students.csv', encoding='utf-8') as data_file:
     # Преобразовать reader к списку
-    csv_data = list(reader(data_file, delimiter=','))
+    pupil_data = list(reader(data_file, delimiter=','))
     # Строка с подписями столбцов
-    header_line = csv_data.pop(0)
+    header_line = pupil_data.pop(0)
     # Словарь класс:[кол-во учащихся, сумма оценок]
     school_classes = dict()
-    for pupil in csv_data:
+    for pupil in pupil_data:
         class_name = pupil[3]
         grade = pupil[4]
         if class_name not in school_classes.keys():
@@ -31,7 +33,7 @@ with open('students.csv', encoding='utf-8') as data_file:
             school_classes[class_name][0] += 1
             school_classes[class_name][1] += int(grade)
     # Замена оценок None на среднюю по классу
-    for pupil in csv_data:
+    for pupil in pupil_data:
         if pupil[4] == 'None':
             average_grade = school_classes[pupil[3]][1] / school_classes[pupil[3]][0]
             # В OO Calc разделитель дробной части - запятая
@@ -43,4 +45,4 @@ with open('students_new.csv', 'w', encoding='utf-8') as data_file:
     # Строка с подписями столбцов
     data_writer.writerow(header_line)
     # Список строк с исправленными оценками
-    data_writer.writerows(csv_data)
+    data_writer.writerows(pupil_data)
