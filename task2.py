@@ -7,12 +7,14 @@
 
 from csv import reader
 
-with open('student.csv', encoding='utf-8') as data_file:
+with open('students_new.csv.csv', encoding='utf-8') as data_file:
     # Преобразовать reader к списку
     pupil_data = list(reader(data_file, delimiter=','))
     # Строка с подписями столбцов
     header_line = pupil_data.pop(0)
     # Реализация сортировки вставками
+    # Первый критерий сортировки - название класса
+    # Второй критерий - оценка за проект
     for i in range(1, len(pupil_data)):
         # Текущий элемент
         elem = pupil_data[i]
