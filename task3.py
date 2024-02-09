@@ -22,7 +22,7 @@ while project_id != 'СТОП':
             position = i
             break
     # Вывод на экран
-    if position > 0:
+    if position >= 0:
         pupil_name = pupil_data[position][1].split()
         name = pupil_name[1][0] + '.' + pupil_name[0]
         print(f'Проект No {project_id} делал: {name} он(а) получил(а) оценку - {pupil_data[position][4]}.')
